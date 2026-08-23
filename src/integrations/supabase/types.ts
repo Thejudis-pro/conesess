@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      inscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          nom_contact: string
+          nom_structure: string
+          region: Database["public"]["Enums"]["region_sn"]
+          secteur: Database["public"]["Enums"]["secteur_ess"]
+          statut: Database["public"]["Enums"]["statut_inscription"]
+          telephone: string
+          type_organisation: Database["public"]["Enums"]["type_organisation"]
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          nom_contact: string
+          nom_structure: string
+          region: Database["public"]["Enums"]["region_sn"]
+          secteur: Database["public"]["Enums"]["secteur_ess"]
+          statut?: Database["public"]["Enums"]["statut_inscription"]
+          telephone: string
+          type_organisation: Database["public"]["Enums"]["type_organisation"]
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          nom_contact?: string
+          nom_structure?: string
+          region?: Database["public"]["Enums"]["region_sn"]
+          secteur?: Database["public"]["Enums"]["secteur_ess"]
+          statut?: Database["public"]["Enums"]["statut_inscription"]
+          telephone?: string
+          type_organisation?: Database["public"]["Enums"]["type_organisation"]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +64,34 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      region_sn:
+        | "Dakar"
+        | "Thiès"
+        | "Diourbel"
+        | "Fatick"
+        | "Kaolack"
+        | "Kaffrine"
+        | "Kédougou"
+        | "Kolda"
+        | "Louga"
+        | "Matam"
+        | "Saint-Louis"
+        | "Sédhiou"
+        | "Tambacounda"
+        | "Ziguinchor"
+      secteur_ess:
+        | "Agroécologie & Souveraineté Alimentaire"
+        | "Mutuelles de Santé, Épargne et Crédit (SFD)"
+        | "Artisanat, Énergie Renouvelable & Économie Circulaire"
+        | "Services, Numérique Social & Éducation"
+      statut_inscription: "en_attente" | "validé"
+      type_organisation:
+        | "Coopérative"
+        | "Mutuelle de santé/épargne"
+        | "GIE"
+        | "Association économique"
+        | "Entreprise sociale"
+        | "Autre"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +218,38 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      region_sn: [
+        "Dakar",
+        "Thiès",
+        "Diourbel",
+        "Fatick",
+        "Kaolack",
+        "Kaffrine",
+        "Kédougou",
+        "Kolda",
+        "Louga",
+        "Matam",
+        "Saint-Louis",
+        "Sédhiou",
+        "Tambacounda",
+        "Ziguinchor",
+      ],
+      secteur_ess: [
+        "Agroécologie & Souveraineté Alimentaire",
+        "Mutuelles de Santé, Épargne et Crédit (SFD)",
+        "Artisanat, Énergie Renouvelable & Économie Circulaire",
+        "Services, Numérique Social & Éducation",
+      ],
+      statut_inscription: ["en_attente", "validé"],
+      type_organisation: [
+        "Coopérative",
+        "Mutuelle de santé/épargne",
+        "GIE",
+        "Association économique",
+        "Entreprise sociale",
+        "Autre",
+      ],
+    },
   },
 } as const
