@@ -121,12 +121,6 @@ const embleme = [
   },
 ];
 
-const palette = [
-  { name: "NAVY", hex: "#1B2A56", bg: "#1B2A56", fg: "#F7F5EE" },
-  { name: "VERT", hex: "#1E7A3C", bg: "#1E7A3C", fg: "#F7F5EE" },
-  { name: "VERT CLAIR", hex: "#5FB84C", bg: "#5FB84C", fg: "#12251A" },
-  { name: "OR", hex: "#EFA83A", bg: "#EFA83A", fg: "#3A2606" },
-];
 
 const constats = [
   {
@@ -337,22 +331,6 @@ function Index() {
                   alt="Emblème du CONESESS"
                   className="block w-[min(78%,300px)] rounded-full"
                 />
-              </div>
-              <p className="label-mono mt-3.5 text-foreground/60">
-                Palette officielle — usage réservé
-              </p>
-              <div className="mt-2.5 grid grid-cols-2 gap-px">
-                {palette.map((c) => (
-                  <div
-                    key={c.name}
-                    style={{ background: c.bg, color: c.fg }}
-                    className="label-mono px-3 py-3.5 leading-[1.7]"
-                  >
-                    {c.name}
-                    <br />
-                    {c.hex}
-                  </div>
-                ))}
               </div>
             </div>
           </Container>
