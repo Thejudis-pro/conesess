@@ -18,9 +18,69 @@ import { MembershipForm } from "@/components/site/MembershipForm";
 import { btn, Card, Chip, Eyebrow, Section, SectionHeading } from "@/components/site/primitives";
 import { cn } from "@/lib/utils";
 
-const TITLE = "CONESESS — Fédérer l'économie sociale et solidaire du Sénégal";
+const SITE_URL = "https://conesess.lovable.app";
+const OG_IMAGE = `${SITE_URL}/og-conesess.png`;
+const TITLE = "CONESESS — Économie sociale et solidaire au Sénégal";
 const DESCRIPTION =
-  "Le Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal : représentation patronale, incubateur IAN-ESS, observatoire ON-ESS et adhésion des structures ESS.";
+  "Le Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal : représentation patronale, incubateur IAN-ESS, observatoire ON-ESS et adhésion des coopératives, mutuelles et GIE.";
+
+export const faq = [
+  {
+    q: "Qu'est-ce que le CONESESS ?",
+    a: "Le CONESESS (Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal) est le cadre patronal qui fédère et représente les coopératives, mutuelles, GIE, associations économiques et entreprises sociales du Sénégal auprès des pouvoirs publics et des partenaires techniques et financiers.",
+  },
+  {
+    q: "Qui peut devenir membre du CONESESS ?",
+    a: "L'adhésion est ouverte à toute structure sénégalaise de l'économie sociale et solidaire : coopérative, mutuelle de santé, d'épargne et de crédit (SFD), groupement d'intérêt économique (GIE), association à activité économique ou entreprise sociale.",
+  },
+  {
+    q: "Comment adhérer au CONESESS ?",
+    a: "Remplissez le formulaire d'adhésion en ligne dans la section « Devenir membre ». La demande est instruite par le Secrétariat Général, puis validée par le Bureau Exécutif. Votre contact reçoit ensuite la suite de la procédure.",
+  },
+  {
+    q: "Que sont l'IAN-ESS et l'ON-ESS ?",
+    a: "L'IAN-ESS est l'incubateur et accélérateur national de l'ESS : il accompagne la structuration, le financement et la mise en marché des structures membres. L'ON-ESS est l'observatoire national de l'ESS : il produit les données, indicateurs et analyses sur le poids réel du secteur dans l'économie sénégalaise.",
+  },
+  {
+    q: "Comment est gouverné le CONESESS ?",
+    a: "La gouvernance repose sur cinq instances articulant la souveraineté des membres, le contrôle stratégique et l'exécution permanente, appuyées par quatre pôles sectoriels.",
+  },
+  {
+    q: "Quels services le CONESESS apporte-t-il à ses membres ?",
+    a: "Représentation et plaidoyer, accès aux financements adaptés, appui à la commande publique et privée, mutualisation d'équipements, formation, certification, mise en réseau et production de données sectorielles.",
+  },
+];
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "CONESESS",
+  legalName:
+    "Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal",
+  alternateName: "Conseil National des Entreprises de l'ESS du Sénégal",
+  url: SITE_URL,
+  logo: OG_IMAGE,
+  description: DESCRIPTION,
+  areaServed: { "@type": "Country", name: "Sénégal" },
+  address: { "@type": "PostalAddress", addressCountry: "SN", addressLocality: "Dakar" },
+  knowsAbout: [
+    "Économie sociale et solidaire",
+    "Coopératives",
+    "Mutuelles de santé",
+    "Systèmes financiers décentralisés",
+    "Agroécologie",
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,11 +90,22 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(organizationSchema) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema) },
     ],
   }),
   component: Index,
 });
+
 
 const constats = [
   {
