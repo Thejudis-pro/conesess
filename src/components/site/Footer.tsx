@@ -1,5 +1,3 @@
-import { Link } from "@tanstack/react-router";
-
 import logo from "@/assets/conesess-logo.png";
 import { Container } from "@/components/site/primitives";
 
@@ -64,12 +62,6 @@ export function Footer() {
             <br />
             contact@conesess.sn
           </p>
-          <Link
-            to="/admin"
-            className="label-mono mt-[18px] inline-block border-b-2 border-leaf/40 text-leaf hover:text-gold"
-          >
-            Espace admin →
-          </Link>
         </div>
       </Container>
       <div className="border-t-2 border-ink-foreground/15">
