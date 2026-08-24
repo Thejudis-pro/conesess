@@ -1,10 +1,9 @@
-import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import logo from "@/assets/conesess-logo.png";
 import { btn } from "@/components/site/primitives";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 
 const nav = [
   { href: "#constats", label: "Constats" },
@@ -13,7 +12,6 @@ const nav = [
   { href: "#gouvernance", label: "Gouvernance" },
   { href: "#poles", label: "Pôles" },
   { href: "#services", label: "Services" },
-  { href: "#adherer", label: "Adhérer" },
 ];
 
 export function Header() {
@@ -50,12 +48,6 @@ export function Header() {
               {item.label}
             </a>
           ))}
-          <Link
-            to="/admin"
-            className="label-mono border-b-2 border-transparent py-1 text-foreground/55 transition-colors hover:border-leaf hover:text-secondary"
-          >
-            Admin
-          </Link>
         </nav>
 
         <a
@@ -89,15 +81,6 @@ export function Header() {
                 </a>
               </li>
             ))}
-            <li>
-              <Link
-                to="/admin"
-                onClick={() => setOpen(false)}
-                className="label-mono block px-2 py-2 text-foreground/55 hover:text-secondary"
-              >
-                Espace admin
-              </Link>
-            </li>
             <li>
               <a
                 href="#adherer"
