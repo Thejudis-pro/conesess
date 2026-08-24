@@ -28,7 +28,7 @@ export function Section({
   );
 }
 
-export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string | undefined }) {
   return (
     <p className={cn("label-mono text-secondary", className)}>
       {children}
@@ -105,7 +105,7 @@ export const btn = cva(
 
 export type BtnProps = VariantProps<typeof btn>;
 
-export function Chip({ children, className }: { children: ReactNode; className?: string }) {
+export function Chip({ children, className }: { children: ReactNode; className?: string | undefined }) {
   return (
     <span
       className={cn(
