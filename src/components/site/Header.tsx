@@ -13,81 +13,99 @@ const nav = [
   { href: "#gouvernance", label: "Gouvernance" },
   { href: "#poles", label: "Pôles" },
   { href: "#services", label: "Services" },
+  { href: "#adherer", label: "Adhérer" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a href="#hero" className="flex items-center gap-3">
-          <img src={logo} alt="Logo du CONESESS" width={48} height={48} className="h-11 w-11" />
-          <span className="leading-tight">
-            <span className="block font-display text-base font-extrabold text-primary">CONESESS</span>
-            <span className="label-mono block text-[0.55rem] text-muted-foreground">
+    <header className="sticky top-0 z-50 border-b-2 border-primary bg-background">
+      <div className="mx-auto flex w-full max-w-[1180px] flex-wrap items-center gap-6 px-6 py-[14px]">
+        <a href="#top" className="flex flex-none items-center gap-3">
+          <img
+            src={logo}
+            alt="CONESESS"
+            width={46}
+            height={46}
+            className="block h-[46px] w-[46px] rounded-full"
+          />
+          <span className="leading-none">
+            <span className="block font-display text-[19px] font-extrabold leading-none tracking-[-0.01em] text-primary">
+              CONESESS
+            </span>
+            <span className="label-mono mt-1 block text-secondary">
               Économie sociale et solidaire
             </span>
           </span>
         </a>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="ml-auto hidden items-center gap-[22px] lg:flex">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-secondary"
+              className="label-mono border-b-2 border-transparent py-1 text-foreground transition-colors hover:border-leaf hover:text-secondary"
             >
               {item.label}
             </a>
           ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <a href="#adherer" className={cn(btn({ size: "sm" }), "hidden sm:inline-flex")}>
-            Adhérer
-          </a>
-          <Link to="/admin" className={cn(btn({ variant: "outline", size: "sm" }), "hidden lg:inline-flex")}>
+          <Link
+            to="/admin"
+            className="label-mono border-b-2 border-transparent py-1 text-foreground/55 transition-colors hover:border-leaf hover:text-secondary"
+          >
             Admin
           </Link>
-          <button
-            type="button"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-primary lg:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        </nav>
+
+        <a
+          href="#adherer"
+          className={cn(btn({ variant: "navy" }), "ml-auto hidden lg:inline-flex")}
+        >
+          Devenir membre
+        </a>
+
+        <button
+          type="button"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          onClick={() => setOpen((v) => !v)}
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center border-2 border-primary text-primary lg:hidden"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       {open ? (
-        <nav className="border-t border-border bg-card px-5 py-4 lg:hidden">
+        <nav className="border-t-2 border-primary bg-background px-6 py-4 lg:hidden">
           <ul className="space-y-1">
             {nav.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-2 py-2 text-sm font-medium text-foreground/85 hover:bg-accent"
+                  className="label-mono block px-2 py-2 text-foreground/85 hover:text-secondary"
                 >
                   {item.label}
                 </a>
               </li>
             ))}
             <li>
+              <Link
+                to="/admin"
+                onClick={() => setOpen(false)}
+                className="label-mono block px-2 py-2 text-foreground/55 hover:text-secondary"
+              >
+                Espace admin
+              </Link>
+            </li>
+            <li>
               <a
                 href="#adherer"
                 onClick={() => setOpen(false)}
-                className={cn(btn({ size: "sm" }), "mt-2 w-full")}
+                className={cn(btn({ variant: "navy" }), "mt-2 w-full")}
               >
-                Adhérer
+                Devenir membre
               </a>
-            </li>
-            <li>
-              <Link to="/admin" className={cn(btn({ variant: "outline", size: "sm" }), "mt-2 w-full")}>
-                Espace admin
-              </Link>
             </li>
           </ul>
         </nav>

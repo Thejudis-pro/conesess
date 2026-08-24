@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F7F5EE;color:#1C2521;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#1E7A3C;text-decoration:none}
+  a:hover{color:#1B2A56}
+  h1,h2,h3{margin:0;font-family:Poppins,sans-serif}
+  p{margin:0}
+  input,select,button{font:inherit;color:inherit}
+  :focus-visible{outline:2px solid #EFA83A;outline-offset:3px}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+  <header style="background:#1B2A56;color:#F7F5EE;border-bottom:2px solid #1B2A56">
+    <div style="max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <a href="Site CONESESS.dc.html" style="display:flex;align-items:center;gap:12px">
+        <span style="width:44px;height:44px;flex:0 0 auto;background:#F7F5EE;border-radius:50%;display:flex;align-items:center;justify-content:center">
+          <img src="assets/logo-conesess.png" alt="CONESESS" style="width:40px;height:40px;display:block;border-radius:50%;clip-path:circle(48%)">
+        </span>
+        <span>
+          <span style="display:block;font-family:Poppins,sans-serif;font-weight:800;font-size:17px;color:#F7F5EE;line-height:1">CONESESS</span>
+          <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5FB84C;margin-top:4px">ESPACE ADMIN</span>
+        </span>
+      </a>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em">
+        <span style="color:rgba(247,245,238,.6)">TABLE <span style="color:#5FB84C">inscriptions</span></span>
+        <a href="Site CONESESS.dc.html" style="color:#F7F5EE;border-bottom:2px solid rgba(95,184,76,.5);padding-bottom:2px" style-hover="color:#EFA83A">← RETOUR AU SITE</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;max-width:1280px;width:100%;margin:0 auto;padding:clamp(28px,4vw,56px) 24px">
+
+    <div style="display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,40px)">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:#1E7A3C;margin-bottom:12px">DEMANDES D'ADHÉSION</div>
+        <h1 style="font-weight:800;font-size:clamp(26px,3.4vw,42px);line-height:1.06;letter-spacing:-.025em;color:#1B2A56">Instruction des dossiers</h1>
+      </div>
+      <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:rgba(28,37,33,.6)">DERNIÈRE SYNCHRO — 24/08/2026 09:12</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:rgba(27,42,86,.16);border:2px solid #1B2A56;margin-bottom:clamp(24px,3vw,40px)">
+      <div style="background:#F7F5EE;padding:22px">
+        <div style="font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(26px,3vw,38px);color:#1B2A56;line-height:1">{{ total }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#1E7A3C;margin-top:8px">TOTAL DOSSIERS</div>
+      </div>
+      <div style="background:#F7F5EE;padding:22px">
+        <div style="font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(26px,3vw,38px);color:#EFA83A;line-height:1">{{ nbAttente }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#1E7A3C;margin-top:8px">EN ATTENTE</div>
+      </div>
+      <div style="background:#F7F5EE;padding:22px">
+        <div style="font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(26px,3vw,38px);color:#1E7A3C;line-height:1">{{ nbValides }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#1E7A3C;margin-top:8px">VALIDÉS</div>
+      </div>
+      <div style="background:#F7F5EE;padding:22px">
+        <div style="font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(26px,3vw,38px);color:#1B2A56;line-height:1">{{ nbRegions }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#1E7A3C;margin-top:8px">RÉGIONS COUVERTES</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:2px;flex-wrap:wrap;margin-bottom:22px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em">
+      <button onClick="{{ setAll }}" style="background:{{ bgAll }};color:{{ fgAll }};border:2px solid #1B2A56;padding:11px 20px;cursor:pointer;text-align:left">TOUS</button>
+      <button onClick="{{ setAttente }}" style="background:{{ bgAttente }};color:{{ fgAttente }};border:2px solid #1B2A56;padding:11px 20px;cursor:pointer;text-align:left">EN ATTENTE</button>
+      <button onClick="{{ setValide }}" style="background:{{ bgValide }};color:{{ fgValide }};border:2px solid #1B2A56;padding:11px 20px;cursor:pointer;text-align:left">VALIDÉS</button>
+      <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Rechercher une structure…" style="flex:1 1 220px;min-width:0;border:2px solid #1B2A56;background:transparent;padding:11px 14px;outline:none" style-focus="border:2px solid #1E7A3C">
+    </div>
+
+    <div style="border:2px solid #1B2A56;overflow-x:auto">
+      <div style="min-width:760px">
+        <div style="display:grid;grid-template-columns:2.2fr 1.1fr 1fr 1.6fr 1fr 1.1fr;background:#1B2A56;color:#F7F5EE;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em">
+          <div style="padding:14px 16px">STRUCTURE</div>
+          <div style="padding:14px 16px">TYPE</div>
+          <div style="padding:14px 16px">RÉGION</div>
+          <div style="padding:14px 16px">CONTACT</div>
+          <div style="padding:14px 16px">DÉPÔT</div>
+          <div style="padding:14px 16px">STATUT</div>
+        </div>
+        <sc-for list="{{ rows }}" as="row" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:2.2fr 1.1fr 1fr 1.6fr 1fr 1.1fr;border-top:2px solid rgba(27,42,86,.16);transition:background .2s ease" style-hover="background:rgba(30,122,60,.06)">
+            <div style="padding:16px;font-weight:600;font-size:15px;color:#1B2A56">{{ row.nom }}</div>
+            <div style="padding:16px;font-size:14.5px;opacity:.85">{{ row.type }}</div>
+            <div style="padding:16px;font-size:14.5px;opacity:.85">{{ row.region }}</div>
+            <div style="padding:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;opacity:.8;word-break:break-all">{{ row.email }}</div>
+            <div style="padding:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;opacity:.7">{{ row.date }}</div>
+            <div style="padding:16px">
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;padding:6px 10px;background:{{ row.bg }};color:{{ row.fg }}">{{ row.statut }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:rgba(28,37,33,.62)">
+      <span>{{ countLabel }}</span>
+      <span style="flex:1;height:2px;background:rgba(27,42,86,.14);min-width:20px"></span>
+      <span>LECTURE SEULE — L'ÉCRITURE PASSE PAR SUPABASE</span>
+    </div>
+
+  </main>
+
+  <footer style="background:#1C2521;color:rgba(247,245,238,.6);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em">
+    <div style="max-width:1280px;margin:0 auto;padding:18px 24px">CONESESS — ESPACE ADMIN — ACCÈS RÉSERVÉ AU BUREAU CONFÉDÉRAL</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DATA = [
+  { nom: "Coopérative Wallu Kolda", type: "Coopérative", region: "Kolda", email: "contact@wallu-kolda.sn", date: "18/08/2026", statut: "EN ATTENTE" },
+  { nom: "Mutuelle de santé Ndar", type: "Mutuelle", region: "Saint-Louis", email: "bureau@ms-ndar.sn", date: "17/08/2026", statut: "VALIDÉ" },
+  { nom: "GIE Femmes de Fatick", type: "GIE", region: "Fatick", email: "gie.fatick@gmail.com", date: "16/08/2026", statut: "EN ATTENTE" },
+  { nom: "Sénégal Textile Solidaire", type: "Entreprise sociale", region: "Thiès", email: "adhesion@sts.sn", date: "14/08/2026", statut: "VALIDÉ" },
+  { nom: "Coopérative agricole Kaffrine", type: "Coopérative", region: "Kaffrine", email: "coop.kaffrine@sn.coop", date: "12/08/2026", statut: "EN ATTENTE" },
+  { nom: "Mutuelle d'épargne Ziguinchor", type: "Mutuelle", region: "Ziguinchor", email: "mez@mutuelle-zig.sn", date: "09/08/2026", statut: "VALIDÉ" },
+  { nom: "GIE Artisans de Louga", type: "GIE", region: "Louga", email: "artisans.louga@gie.sn", date: "05/08/2026", statut: "EN ATTENTE" }
+];
+
+class Component extends DCLogic {
+  state = { filter: "TOUS", query: "" };
+
+  renderVals() {
+    const f = this.state.filter;
+    const q = this.state.query.trim().toLowerCase();
+    const rows = DATA
+      .filter(r => f === "TOUS" || r.statut === f)
+      .filter(r => !q || r.nom.toLowerCase().includes(q) || r.region.toLowerCase().includes(q))
+      .map(r => Object.assign({}, r, {
+        bg: r.statut === "VALIDÉ" ? "#1E7A3C" : "#EFA83A",
+        fg: r.statut === "VALIDÉ" ? "#F7F5EE" : "#3A2606"
+      }));
+    const on = "#1B2A56", off = "transparent", onT = "#F7F5EE", offT = "#1B2A56";
+    return {
+      rows,
+      total: DATA.length,
+      nbAttente: DATA.filter(r => r.statut === "EN ATTENTE").length,
+      nbValides: DATA.filter(r => r.statut === "VALIDÉ").length,
+      nbRegions: new Set(DATA.map(r => r.region)).size,
+      countLabel: rows.length + " DOSSIER" + (rows.length > 1 ? "S" : "") + " AFFICHÉ" + (rows.length > 1 ? "S" : ""),
+      query: this.state.query,
+      onQuery: e => this.setState({ query: e.target.value }),
+      setAll: () => this.setState({ filter: "TOUS" }),
+      setAttente: () => this.setState({ filter: "EN ATTENTE" }),
+      setValide: () => this.setState({ filter: "VALIDÉ" }),
+      bgAll: f === "TOUS" ? on : off, fgAll: f === "TOUS" ? onT : offT,
+      bgAttente: f === "EN ATTENTE" ? on : off, fgAttente: f === "EN ATTENTE" ? onT : offT,
+      bgValide: f === "VALIDÉ" ? on : off, fgValide: f === "VALIDÉ" ? onT : offT
+    };
+  }
+}
+</script>
+</body>
+</html>

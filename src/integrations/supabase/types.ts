@@ -20,10 +20,10 @@ export type Database = {
           email: string
           id: string
           message: string | null
-          nom_contact: string
+          nom_contact: string | null
           nom_structure: string
-          region: Database["public"]["Enums"]["region_sn"]
-          secteur: Database["public"]["Enums"]["secteur_ess"]
+          region: string
+          secteur: Database["public"]["Enums"]["secteur_ess"] | null
           statut: Database["public"]["Enums"]["statut_inscription"]
           telephone: string
           type_organisation: Database["public"]["Enums"]["type_organisation"]
@@ -33,10 +33,10 @@ export type Database = {
           email: string
           id?: string
           message?: string | null
-          nom_contact: string
+          nom_contact?: string | null
           nom_structure: string
-          region: Database["public"]["Enums"]["region_sn"]
-          secteur: Database["public"]["Enums"]["secteur_ess"]
+          region: string
+          secteur?: Database["public"]["Enums"]["secteur_ess"] | null
           statut?: Database["public"]["Enums"]["statut_inscription"]
           telephone: string
           type_organisation: Database["public"]["Enums"]["type_organisation"]
@@ -46,10 +46,10 @@ export type Database = {
           email?: string
           id?: string
           message?: string | null
-          nom_contact?: string
+          nom_contact?: string | null
           nom_structure?: string
-          region?: Database["public"]["Enums"]["region_sn"]
-          secteur?: Database["public"]["Enums"]["secteur_ess"]
+          region?: string
+          secteur?: Database["public"]["Enums"]["secteur_ess"] | null
           statut?: Database["public"]["Enums"]["statut_inscription"]
           telephone?: string
           type_organisation?: Database["public"]["Enums"]["type_organisation"]
@@ -92,21 +92,6 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
-      region_sn:
-        | "Dakar"
-        | "Thiès"
-        | "Diourbel"
-        | "Fatick"
-        | "Kaolack"
-        | "Kaffrine"
-        | "Kédougou"
-        | "Kolda"
-        | "Louga"
-        | "Matam"
-        | "Saint-Louis"
-        | "Sédhiou"
-        | "Tambacounda"
-        | "Ziguinchor"
       secteur_ess:
         | "Agroécologie & Souveraineté Alimentaire"
         | "Mutuelles de Santé, Épargne et Crédit (SFD)"
@@ -120,6 +105,7 @@ export type Database = {
         | "Association économique"
         | "Entreprise sociale"
         | "Autre"
+        | "Mutuelle"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -248,22 +234,6 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
-      region_sn: [
-        "Dakar",
-        "Thiès",
-        "Diourbel",
-        "Fatick",
-        "Kaolack",
-        "Kaffrine",
-        "Kédougou",
-        "Kolda",
-        "Louga",
-        "Matam",
-        "Saint-Louis",
-        "Sédhiou",
-        "Tambacounda",
-        "Ziguinchor",
-      ],
       secteur_ess: [
         "Agroécologie & Souveraineté Alimentaire",
         "Mutuelles de Santé, Épargne et Crédit (SFD)",
@@ -278,6 +248,7 @@ export const Constants = {
         "Association économique",
         "Entreprise sociale",
         "Autre",
+        "Mutuelle",
       ],
     },
   },

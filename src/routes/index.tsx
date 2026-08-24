@@ -1,53 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Banknote,
-  BarChart3,
-  Building2,
-  Handshake,
-  Landmark,
-  Layers,
-  Network,
-  Store,
-} from "lucide-react";
 
 import logo from "@/assets/conesess-logo.png";
 import { Footer } from "@/components/site/Footer";
 import { GovernanceDiagram } from "@/components/site/GovernanceDiagram";
 import { Header } from "@/components/site/Header";
+import { IanEssDiagram } from "@/components/site/IanEssDiagram";
 import { MembershipForm } from "@/components/site/MembershipForm";
-import { btn, Card, Chip, Eyebrow, Section, SectionHeading } from "@/components/site/primitives";
+import { btn, Container, Eyebrow, EyebrowRule } from "@/components/site/primitives";
 import { cn } from "@/lib/utils";
 
 const SITE_URL = "https://conesess.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-conesess.png`;
 const TITLE = "CONESESS — Économie sociale et solidaire au Sénégal";
 const DESCRIPTION =
-  "Le Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal : représentation patronale, incubateur IAN-ESS, observatoire ON-ESS et adhésion des coopératives, mutuelles et GIE.";
+  "Le Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal : représentation patronale, incubateur IAN-ESS, observatoire et adhésion des coopératives, mutuelles et GIE.";
 
 export const faq = [
   {
     q: "Qu'est-ce que le CONESESS ?",
-    a: "Le CONESESS (Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal) est le cadre patronal qui fédère et représente les coopératives, mutuelles, GIE, associations économiques et entreprises sociales du Sénégal auprès des pouvoirs publics et des partenaires techniques et financiers.",
+    a: "Le CONESESS (Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal) est le cadre patronal qui fédère et représente les coopératives, mutuelles, GIE et entreprises sociales du Sénégal auprès des pouvoirs publics et des partenaires techniques et financiers.",
   },
   {
     q: "Qui peut devenir membre du CONESESS ?",
-    a: "L'adhésion est ouverte à toute structure sénégalaise de l'économie sociale et solidaire : coopérative, mutuelle de santé, d'épargne et de crédit (SFD), groupement d'intérêt économique (GIE), association à activité économique ou entreprise sociale.",
+    a: "L'adhésion est ouverte à toute structure sénégalaise de l'économie sociale et solidaire : coopérative, mutuelle, groupement d'intérêt économique (GIE) ou entreprise sociale.",
   },
   {
     q: "Comment adhérer au CONESESS ?",
-    a: "Remplissez le formulaire d'adhésion en ligne dans la section « Devenir membre ». La demande est instruite par le Secrétariat Général, puis validée par le Bureau Exécutif. Votre contact reçoit ensuite la suite de la procédure.",
+    a: "Remplissez le formulaire d'adhésion en ligne dans la section « Devenir membre ». La demande est instruite par le Bureau confédéral, qui revient vers vous sous quinze jours.",
   },
   {
-    q: "Que sont l'IAN-ESS et l'ON-ESS ?",
-    a: "L'IAN-ESS est l'incubateur et accélérateur national de l'ESS : il accompagne la structuration, le financement et la mise en marché des structures membres. L'ON-ESS est l'observatoire national de l'ESS : il produit les données, indicateurs et analyses sur le poids réel du secteur dans l'économie sénégalaise.",
+    q: "Que sont l'IAN-ESS et l'Observatoire ?",
+    a: "L'IAN-ESS est l'Incubateur et Accélérateur National de l'ESS : il décline cinq typologies d'incubateurs dans les régions pour accompagner les structures membres. L'Observatoire collecte, vérifie et publie les données du secteur — emplois, chiffre d'affaires, cartographie des structures.",
   },
   {
     q: "Comment est gouverné le CONESESS ?",
-    a: "La gouvernance repose sur cinq instances articulant la souveraineté des membres, le contrôle stratégique et l'exécution permanente, appuyées par quatre pôles sectoriels.",
+    a: "L'Assemblée des membres élit le Bureau confédéral. Trois organes techniques — l'Observatoire, l'Incubateur IAN-ESS et les Pôles sectoriels — instruisent ses décisions et remontent le terrain depuis les 14 régions.",
   },
   {
     q: "Quels services le CONESESS apporte-t-il à ses membres ?",
-    a: "Représentation et plaidoyer, accès aux financements adaptés, appui à la commande publique et privée, mutualisation d'équipements, formation, certification, mise en réseau et production de données sectorielles.",
+    a: "Représentation institutionnelle, formation et certification, accès au financement, mise en réseau, veille et données, appui juridique.",
   },
 ];
 
@@ -55,8 +46,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "CONESESS",
-  legalName:
-    "Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal",
+  legalName: "Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal",
   alternateName: "Conseil National des Entreprises de l'ESS du Sénégal",
   url: SITE_URL,
   logo: OG_IMAGE,
@@ -106,371 +96,475 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-
-const constats = [
-  {
-    icon: Network,
-    title: "Représentation fragmentée",
-    text: "Aucun cadre patronal unifié ne porte aujourd'hui la voix des entreprises de l'ESS.",
-  },
-  {
-    icon: Banknote,
-    title: "Financements inadaptés",
-    text: "Les offres bancaires ignorent les modèles économiques propres à l'ESS.",
-  },
-  {
-    icon: Store,
-    title: "Accès limité aux marchés",
-    text: "Les structures restent en marge des marchés publics et des commandes privées.",
-  },
-  {
-    icon: Layers,
-    title: "Faible mutualisation",
-    text: "Équipements et débouchés commerciaux sont rarement partagés entre acteurs.",
-  },
-  {
-    icon: BarChart3,
-    title: "Données insuffisantes",
-    text: "Le poids réel de l'ESS dans l'économie nationale demeure mal mesuré.",
-  },
-  {
-    icon: Landmark,
-    title: "Coordination faible",
-    text: "Le dialogue entre acteurs, État, collectivités et partenaires reste discontinu.",
-  },
+const kpis = [
+  { value: "14", label: "Régions représentées" },
+  { value: "04", label: "Pôles sectoriels" },
+  { value: "02", label: "Piliers stratégiques" },
+  { value: "05", label: "Typologies d'incubateurs" },
 ];
 
-const vision = [
+const embleme = [
   {
     n: "01",
-    title: "Représenter",
-    text: "Représenter les entreprises de l'ESS et défendre leurs intérêts auprès des pouvoirs publics et des partenaires.",
+    title: "Le cercle de personnages",
+    text: "Coopératives, mutuelles, GIE et entreprises sociales : un réseau, pas une hiérarchie.",
   },
   {
     n: "02",
-    title: "Structurer",
-    text: "Structurer des filières et des chaînes de valeur inclusives, du producteur au marché final.",
+    title: "La carte du Sénégal",
+    text: "L'ancrage national : les quatorze régions, sans centre unique.",
   },
   {
     n: "03",
-    title: "Renforcer",
-    text: "Renforcer la performance économique et l'impact social des membres, avec des outils exigeants.",
+    title: "Les feuilles",
+    text: "Une économie de production durable, enracinée dans les territoires.",
   },
 ];
 
-const typologies = [
-  "Communal",
-  "Départemental / Thématique",
-  "Mobile — Hackathon 48h",
-  "Confessionnel",
-  "Universitaire",
+const palette = [
+  { name: "NAVY", hex: "#1B2A56", bg: "#1B2A56", fg: "#F7F5EE" },
+  { name: "VERT", hex: "#1E7A3C", bg: "#1E7A3C", fg: "#F7F5EE" },
+  { name: "VERT CLAIR", hex: "#5FB84C", bg: "#5FB84C", fg: "#12251A" },
+  { name: "OR", hex: "#EFA83A", bg: "#EFA83A", fg: "#3A2606" },
 ];
 
-const echelons = [
+const constats = [
   {
-    title: "Relais Communaux",
-    text: "Collecte de terrain, veille locale et remontée des données d'activité des structures ESS.",
+    n: "01",
+    title: "Une représentation dispersée",
+    text: "Des milliers de coopératives et mutuelles négocient seules. Aucune structure ne porte leur position d'ensemble.",
   },
   {
-    title: "Antennes Départementales",
-    text: "Consolidation, contrôle qualité des données et appui technique aux relais communaux.",
+    n: "02",
+    title: "Un dialogue fragmenté avec l'État",
+    text: "Les politiques publiques de l'ESS se décident sans canal permanent de concertation avec les acteurs concernés.",
   },
   {
-    title: "Bureau National",
-    text: "Publication, production statistique nationale et régulation du Label ESS.",
+    n: "03",
+    title: "Un accès inégal au financement",
+    text: "Les structures de terrain restent hors des circuits bancaires et des guichets de financement dédiés.",
+  },
+  {
+    n: "04",
+    title: "Des compétences non capitalisées",
+    text: "Le savoir-faire existe dans les régions, mais il circule peu et n'est ni documenté ni transmis.",
   },
 ];
 
-const instances = [
+const piliers = [
   {
-    n: "1",
-    title: "Assemblée Générale",
-    text: "Organe souverain — « une entreprise = une voix ».",
+    n: "PILIER 01",
+    title: "Représentation & plaidoyer",
+    text: "Porter la position du secteur devant les ministères, l'Assemblée nationale et les partenaires techniques. Négocier un cadre fiscal et juridique adapté aux structures coopératives et mutualistes.",
   },
   {
-    n: "2",
-    title: "Conseil d'Administration",
-    text: "Contrôle stratégique, 14 régions représentées.",
+    n: "PILIER 02",
+    title: "Accompagnement & structuration",
+    text: "Outiller les membres : incubation, formation, accès au financement, mise en conformité. Faire passer les initiatives locales à l'échelle d'une filière organisée.",
+  },
+];
+
+const gouvernanceCards = [
+  {
+    title: "Observatoire",
+    text: "Collecte, vérifie et publie les données du secteur : emplois, chiffre d'affaires, cartographie des structures.",
   },
   {
-    n: "3",
-    title: "Bureau Exécutif",
-    text: "Présidence + Vice-présidence Incubateur + Vice-présidence Observatoire.",
+    title: "Incubateur IAN-ESS",
+    text: "Cinq typologies d'incubateurs déployées dans les régions pour accompagner les structures membres.",
   },
   {
-    n: "4",
-    title: "Secrétariat Général",
-    text: "Exécution administrative permanente.",
-  },
-  {
-    n: "5",
-    title: "Collège des Membres Associés",
-    text: "Comité des Sages, droit de veto moral.",
+    title: "Pôles sectoriels",
+    text: "Quatre pôles qui organisent les filières, fixent les priorités et désignent les porte-parole techniques.",
   },
 ];
 
 const poles = [
   {
-    title: "Agroécologie & Souveraineté Alimentaire",
-    text: "Coopératives agricoles, transformation locale, circuits courts et sécurité alimentaire.",
+    n: "PÔLE 01",
+    title: "Agriculture & agroalimentaire",
+    text: "Coopératives de production, transformation locale, accès aux marchés et aux intrants.",
+    bar: "#1E7A3C",
   },
   {
-    title: "Mutuelles de Santé, Épargne et Crédit (SFD)",
-    text: "Protection sociale de proximité, finance inclusive et systèmes financiers décentralisés.",
+    n: "PÔLE 02",
+    title: "Artisanat & industries créatives",
+    text: "Ateliers, GIE d'artisans, filières textile et culture : qualité, label, export.",
+    bar: "#5FB84C",
   },
   {
-    title: "Artisanat, Énergie Renouvelable & Économie Circulaire",
-    text: "Métiers d'art, valorisation des déchets et solutions énergétiques communautaires.",
+    n: "PÔLE 03",
+    title: "Services & numérique",
+    text: "Entreprises sociales de services, outils numériques mutualisés, formation aux usages.",
+    bar: "#EFA83A",
   },
   {
-    title: "Services, Numérique Social & Éducation",
-    text: "Services de proximité, plateformes solidaires, formation et éducation populaire.",
+    n: "PÔLE 04",
+    title: "Finance solidaire & mutualité",
+    text: "Mutuelles d'épargne et de crédit, garanties, protection sociale des membres.",
+    bar: "#1B2A56",
   },
 ];
 
 const services = [
-  "Formalisation & agrément ESS",
-  "Formation, incubation, accélération",
-  "Montage de projets & financement",
-  "Veille marchés & appels à projets",
-  "Plaidoyer institutionnel",
-  "Mutualisation achats / équipements",
-  "Mise en relation investisseurs & acheteurs",
-  "Appui à la digitalisation",
+  {
+    n: "01",
+    title: "Représentation institutionnelle",
+    text: "Votre voix portée dans les instances nationales et les concertations sectorielles.",
+  },
+  {
+    n: "02",
+    title: "Formation & certification",
+    text: "Gestion coopérative, comptabilité, conformité juridique — en présentiel et en région.",
+  },
+  {
+    n: "03",
+    title: "Accès au financement",
+    text: "Montage de dossiers, orientation vers les guichets publics et la finance solidaire.",
+  },
+  {
+    n: "04",
+    title: "Mise en réseau",
+    text: "Rencontres régionales, mise en relation entre filières, groupements d'achat.",
+  },
+  {
+    n: "05",
+    title: "Veille & données",
+    text: "Publications de l'Observatoire, évolutions réglementaires, appels à projets.",
+  },
+  {
+    n: "06",
+    title: "Appui juridique",
+    text: "Statuts, agréments, contentieux : un accompagnement adapté au droit coopératif.",
+  },
 ];
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="max-w-full overflow-x-hidden bg-background text-foreground">
       <Header />
       <main>
         {/* HERO */}
-        <section id="hero" className="relative overflow-hidden border-b border-border bg-card">
-          <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
+        <section id="top" className="border-b-2 border-primary">
+          <Container className="grid items-center gap-8 py-12 sm:gap-14 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-[104px]">
             <div>
-              <Eyebrow>Comité d'Initiative — Mémorandum stratégique 2026</Eyebrow>
-              <h1 className="mt-5 text-3xl leading-[1.08] text-primary sm:text-4xl lg:text-5xl">
+              <EyebrowRule className="mb-6">
+                Comité d'Initiative — Mémorandum stratégique 2026
+              </EyebrowRule>
+              <h1 className="text-[clamp(38px,5.6vw,68px)] font-extrabold leading-[1.02] tracking-[-0.03em] text-primary text-balance">
                 Fédérer l'économie sociale et solidaire du Sénégal
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Faire de l'ESS un levier de production, d'emplois durables et de souveraineté économique —
-                pas seulement un filet social.
+              <p className="mt-6 max-w-[46ch] text-[clamp(16px,1.4vw,19px)] leading-relaxed text-foreground">
+                Faire de l'ESS un levier de production, d'emplois durables et de souveraineté
+                économique — pas seulement un filet social.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#adherer" className={cn(btn({ size: "lg" }))}>
+              <div className="mt-9 flex flex-wrap gap-3.5">
+                <a href="#adherer" className={cn(btn({ variant: "navy", size: "lg" }))}>
                   Devenir membre
                 </a>
-                <a href="#constats" className={cn(btn({ variant: "outline", size: "lg" }))}>
+                <a href="#vision" className={cn(btn({ variant: "outline", size: "lg" }))}>
                   Découvrir le CONESESS
                 </a>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
+            <div className="relative flex items-center justify-center">
+              <span
+                aria-hidden
+                className="absolute left-1/2 top-1/2 aspect-square w-[min(100%,470px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-leaf opacity-35"
+              />
               <img
                 src={logo}
-                alt="Emblème du CONESESS : des personnes réunies autour de la carte du Sénégal"
-                width={420}
-                height={420}
-                className="w-56 max-w-full sm:w-72 lg:w-[22rem]"
+                alt="Logo CONESESS Fondateurs"
+                className="relative block w-[min(84%,390px)] rounded-full"
               />
             </div>
-          </div>
+          </Container>
+        </section>
+
+        {/* KPI STRIP */}
+        <section className="border-b-2 border-primary bg-background">
+          <Container>
+            <div className="grid grid-cols-2 gap-px bg-primary/16 sm:grid-cols-4">
+              {kpis.map((kpi, i) => (
+                <div
+                  key={kpi.label}
+                  className={cn(
+                    "bg-background py-7 px-7",
+                    i === 0 && "pl-0",
+                    i === kpis.length - 1 && "sm:pr-0",
+                  )}
+                >
+                  <div className="font-display text-[clamp(30px,3.4vw,44px)] font-extrabold leading-none text-secondary">
+                    {kpi.value}
+                  </div>
+                  <div className="label-mono mt-2 text-primary">{kpi.label}</div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* EMBLEME */}
+        <section id="embleme" className="scroll-mt-[100px] border-b-2 border-primary">
+          <Container className="grid items-start gap-8 py-12 sm:gap-16 sm:py-[88px] lg:grid-cols-2">
+            <div>
+              <Eyebrow className="mb-[18px]">Emblème</Eyebrow>
+              <h2 className="max-w-[24ch] text-[clamp(26px,3.2vw,40px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                Ce que dit l'emblème.
+              </h2>
+              <div className="mt-6 flex flex-col">
+                {embleme.map((item, i) => (
+                  <div
+                    key={item.n}
+                    className={cn(
+                      "flex gap-4 border-t-2 border-primary/20 py-[18px]",
+                      i === embleme.length - 1 && "border-b-2",
+                    )}
+                  >
+                    <span className="pt-0.5 font-mono text-xs text-gold">{item.n}</span>
+                    <div>
+                      <h3 className="text-[17px] font-bold text-primary">{item.title}</h3>
+                      <p className="mt-1.5 text-[15px] leading-relaxed opacity-80">{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-center border-2 border-primary p-6 sm:p-10">
+                <img
+                  src={logo}
+                  alt="Emblème du CONESESS"
+                  className="block w-[min(78%,300px)] rounded-full"
+                />
+              </div>
+              <p className="label-mono mt-3.5 text-foreground/60">
+                Palette officielle — usage réservé
+              </p>
+              <div className="mt-2.5 grid grid-cols-2 gap-px">
+                {palette.map((c) => (
+                  <div
+                    key={c.name}
+                    style={{ background: c.bg, color: c.fg }}
+                    className="label-mono px-3 py-3.5 leading-[1.7]"
+                  >
+                    {c.name}
+                    <br />
+                    {c.hex}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Container>
         </section>
 
         {/* CONSTATS */}
-        <Section id="constats">
-          <SectionHeading
-            eyebrow="Constats"
-            title="Six blocages structurels freinent l'ESS sénégalaise"
-            intro="Le diagnostic partagé par les acteurs du secteur, base du mémorandum stratégique."
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {constats.map(({ icon: Icon, title, text }) => (
-              <Card key={title}>
-                <Icon className="h-6 w-6 text-secondary" aria-hidden />
-                <h3 className="mt-4 text-base">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
-              </Card>
-            ))}
-          </div>
-        </Section>
-
-        {/* VISION */}
-        <Section id="vision" tone="card">
-          <SectionHeading eyebrow="Vision" title="Trois principes fondateurs" />
-          <div className="mt-10 space-y-4">
-            {vision.map((item) => (
-              <Card key={item.n} variant="outline" className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
-                <span className="label-mono text-lg text-gold">{item.n}</span>
-                <div>
-                  <h3 className="text-lg text-primary">{item.title}</h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+        <section id="constats" className="scroll-mt-[100px] border-b-2 border-primary">
+          <Container className="py-14 sm:py-20 lg:py-[110px]">
+            <div className="mb-9 max-w-[52ch] sm:mb-[60px]">
+              <Eyebrow className="mb-[18px]">01 — Constats</Eyebrow>
+              <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                Un secteur qui fait vivre le pays, sans interlocuteur unique.
+              </h2>
+            </div>
+            <div className="grid gap-0 sm:grid-cols-2">
+              {constats.map((c) => (
+                <div
+                  key={c.n}
+                  className="border-t-2 border-primary px-0 py-[26px] transition-colors hover:bg-secondary/[0.06] sm:px-[26px]"
+                >
+                  <div className="mb-3.5 font-mono text-xs tracking-[0.1em] text-gold">{c.n}</div>
+                  <h3 className="mb-2.5 text-[19px] font-bold leading-[1.25] text-primary">
+                    {c.title}
+                  </h3>
+                  <p className="text-[15.5px] leading-relaxed opacity-85">{c.text}</p>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </Section>
+              ))}
+            </div>
+          </Container>
+        </section>
 
-        {/* PILIERS */}
-        <div id="piliers" className="scroll-mt-24">
-          <Section tone="navy">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        {/* VISION + PILIERS */}
+        <section id="vision" className="border-b-2 border-primary">
+          <Container className="grid gap-10 py-14 sm:gap-[72px] sm:py-20 lg:py-[110px]">
+            <div className="grid gap-10 sm:gap-[72px] lg:grid-cols-2">
               <div>
-                <Eyebrow className="text-gold">Pilier 1 — Soubassement « Citoyenneté Bâtisseuse »</Eyebrow>
-                <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl">IAN-ESS</h2>
-                <p className="mt-2 font-display text-sm font-bold opacity-80">
-                  Incubateur-Accélérateur National de l'ESS
+                <Eyebrow className="mb-[18px]">02 — Vision</Eyebrow>
+                <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                  Faire de l'ESS un interlocuteur reconnu de l'État sénégalais.
+                </h2>
+                <p className="mt-[22px] max-w-[46ch] text-[16.5px] leading-[1.7]">
+                  CONESESS rassemble les acteurs de l'économie sociale et solidaire dans une
+                  confédération nationale unique. Représenter, structurer, professionnaliser : trois
+                  responsabilités, une seule adresse.
                 </p>
-                <p className="mt-6 text-sm leading-relaxed opacity-85">
-                  Le modèle « Business Mentoring » cible l'entrepreneur lui-même, avec une redevabilité
-                  hebdomadaire et mensuelle. L'animation territoriale repose sur une triade : citoyen
-                  bâtisseur, politique-développeur et jeunes leaders.
-                </p>
-                <ul className="mt-6 space-y-2 text-sm opacity-85">
-                  <li>— Cible : l'entrepreneur, pas seulement le projet</li>
-                  <li>— Redevabilité hebdomadaire et mensuelle</li>
-                  <li>— Triade d'animation territoriale</li>
-                </ul>
               </div>
-              <div>
-                <p className="label-mono text-gold">5 typologies d'incubateurs</p>
-                <div className="relative mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8">
-                  {typologies.map((t, i) => (
-                    <Chip
-                      key={t}
-                      className={cn(
-                        "justify-center py-3",
-                        i === 0 && "sm:col-span-2",
-                        i === 4 && "sm:col-span-2",
-                      )}
-                    >
-                      {t}
-                    </Chip>
-                  ))}
-                </div>
+              <div id="piliers" className="flex scroll-mt-[110px] flex-col">
+                {piliers.map((p, i) => (
+                  <div
+                    key={p.n}
+                    className={cn(
+                      "border-t-2 border-primary py-[26px]",
+                      i === piliers.length - 1 && "border-b-2",
+                    )}
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs tracking-[0.1em] text-gold">{p.n}</span>
+                      <h3 className="text-[22px] font-bold text-primary">{p.title}</h3>
+                    </div>
+                    <p className="mt-3 text-[15.5px] leading-relaxed opacity-85">{p.text}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          </Section>
-
-          <Section tone="green">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <Eyebrow className="text-gold">Pilier 2 — Soubassement scientifique</Eyebrow>
-                <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl">ON-ESS</h2>
-                <p className="mt-2 font-display text-sm font-bold opacity-85">
-                  Observatoire National de l'ESS
-                </p>
-                <ul className="mt-6 space-y-4 text-sm leading-relaxed opacity-90">
-                  <li>
-                    <span className="font-display font-bold">Preuve macroéconomique</span> — mesurer le poids
-                    de l'ESS dans le PIB national.
-                  </li>
-                  <li>
-                    <span className="font-display font-bold">Indicateurs d'impact social</span> — écart
-                    salarial de 1 à 7, gouvernance « une personne, une voix ».
-                  </li>
-                  <li>
-                    <span className="font-display font-bold">Régulation du Label ESS</span> — attribution,
-                    contrôle et retrait.
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <p className="label-mono text-gold">3 échelons de collecte</p>
-                <ol className="mt-6 space-y-0">
-                  {echelons.map((e, i) => (
-                    <li key={e.title} className="relative pb-8 pl-10 last:pb-0">
-                      {i < echelons.length - 1 ? (
-                        <span
-                          aria-hidden
-                          className="absolute left-[0.6875rem] top-6 h-full w-px bg-primary-foreground/30"
-                        />
-                      ) : null}
-                      <span className="label-mono absolute left-0 top-0 flex h-6 w-6 items-center justify-center rounded-full border border-primary-foreground/50 text-[0.6rem]">
-                        {i + 1}
-                      </span>
-                      <h3 className="text-base">{e.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed opacity-85">{e.text}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </Section>
-        </div>
+          </Container>
+        </section>
 
         {/* GOUVERNANCE */}
-        <Section id="gouvernance">
-          <SectionHeading
-            eyebrow="Gouvernance"
-            title="Cinq instances, une chaîne de décision lisible"
-            intro="Une architecture démocratique qui articule souveraineté des membres, contrôle stratégique et exécution permanente."
-          />
-          <div className="mt-10 grid gap-10 lg:grid-cols-2">
-            <ol className="space-y-4">
-              {instances.map((i) => (
-                <li key={i.n} className="flex gap-5 border-b border-border pb-4 last:border-0">
-                  <span className="label-mono text-base text-gold">{i.n.padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="text-base text-primary">{i.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{i.text}</p>
-                  </div>
-                </li>
+        <section
+          id="gouvernance"
+          className="border-b-2 border-primary bg-primary text-primary-foreground"
+        >
+          <Container className="py-14 sm:py-20 lg:py-[110px]">
+            <div className="mb-9 max-w-[54ch] sm:mb-14">
+              <Eyebrow tone="leaf" className="mb-[18px]">
+                03 — Gouvernance
+              </Eyebrow>
+              <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary-foreground">
+                Trois organes reliés, une décision commune.
+              </h2>
+              <p className="mt-5 text-[16.5px] leading-[1.7] text-primary-foreground/86">
+                L'Assemblée des membres élit le Bureau confédéral. Trois organes techniques
+                instruisent ses décisions et remontent le terrain.
+              </p>
+            </div>
+            <div className="border-2 border-leaf/45 bg-ink/18 p-5 sm:p-10">
+              <GovernanceDiagram />
+            </div>
+            <div className="mt-7 grid gap-0 sm:mt-11 sm:grid-cols-3">
+              {gouvernanceCards.map((c, i) => (
+                <div
+                  key={c.title}
+                  className={cn(
+                    "border-t-2 border-leaf/45 py-6",
+                    i === 0 && "pr-0 sm:pr-6",
+                    i > 0 && "px-0 sm:px-6",
+                  )}
+                >
+                  <h3 className="mb-2.5 text-lg font-bold text-leaf">{c.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-primary-foreground/82">{c.text}</p>
+                </div>
               ))}
-            </ol>
-            <Card variant="outline" className="bg-card">
-              <p className="label-mono text-primary">Articulation opérationnelle</p>
-              <div className="mt-6">
-                <GovernanceDiagram />
-              </div>
-            </Card>
-          </div>
-        </Section>
+            </div>
+          </Container>
+        </section>
+
+        {/* IAN-ESS */}
+        <section id="ianess" className="scroll-mt-[100px] border-b-2 border-primary">
+          <Container className="py-14 sm:py-20 lg:py-[110px]">
+            <div className="mb-7 max-w-[52ch] sm:mb-12">
+              <Eyebrow className="mb-[18px]">04 — IAN-ESS</Eyebrow>
+              <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                Cinq typologies d'incubateurs, un même réseau.
+              </h2>
+              <p className="mt-5 text-[16.5px] leading-[1.7] opacity-88">
+                L'Incubateur et Accélérateur National de l'ESS décline un dispositif unique en cinq
+                portes d'entrée, selon le métier et le territoire.
+              </p>
+            </div>
+            <IanEssDiagram />
+          </Container>
+        </section>
 
         {/* POLES */}
-        <Section id="poles" tone="card">
-          <SectionHeading eyebrow="Pôles sectoriels" title="Quatre pôles pour structurer les filières" />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {poles.map((p) => (
-              <Card key={p.title} className="border-l-4 border-l-secondary">
-                <Building2 className="h-5 w-5 text-secondary" aria-hidden />
-                <h3 className="mt-4 text-base text-primary">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-              </Card>
-            ))}
-          </div>
-        </Section>
+        <section id="poles" className="scroll-mt-[100px] border-b-2 border-primary">
+          <Container className="py-14 sm:py-20 lg:py-[110px]">
+            <div className="mb-8 max-w-[48ch] sm:mb-[52px]">
+              <Eyebrow className="mb-[18px]">05 — Pôles sectoriels</Eyebrow>
+              <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                Quatre filières, quatre chantiers.
+              </h2>
+            </div>
+            <div className="grid gap-px border-2 border-primary bg-primary sm:grid-cols-2">
+              {poles.map((p) => (
+                <div
+                  key={p.n}
+                  className="bg-background p-6 transition-colors hover:bg-[#FFFDF6] sm:p-9"
+                >
+                  <div style={{ background: p.bar }} className="mb-5 h-1 w-11" />
+                  <div className="mb-2.5 font-mono text-[11.5px] tracking-[0.12em] text-secondary">
+                    {p.n}
+                  </div>
+                  <h3 className="mb-3 text-[21px] font-bold leading-tight text-primary">
+                    {p.title}
+                  </h3>
+                  <p className="text-[15.5px] leading-relaxed opacity-85">{p.text}</p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
 
         {/* SERVICES */}
-        <Section id="services">
-          <SectionHeading eyebrow="Services aux membres" title="Ce que le CONESESS apporte concrètement" />
-          <ul className="mt-10 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-            {services.map((s, i) => (
-              <li key={s} className="flex items-start gap-4 border-b border-border py-3 text-sm">
-                <span className="label-mono text-gold">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-foreground/90">{s}</span>
-              </li>
-            ))}
-          </ul>
-        </Section>
+        <section id="services" className="scroll-mt-[100px] border-b-2 border-primary">
+          <Container className="grid gap-8 py-14 sm:gap-16 sm:py-20 lg:grid-cols-2 lg:py-[110px]">
+            <div>
+              <Eyebrow className="mb-[18px]">06 — Services aux membres</Eyebrow>
+              <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-primary">
+                Ce que l'adhésion apporte, concrètement.
+              </h2>
+              <p className="mt-5 max-w-[40ch] text-[16.5px] leading-[1.7] opacity-88">
+                Six services ouverts à toute structure membre, dès la première année.
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {services.map((s, i) => (
+                <div
+                  key={s.n}
+                  className={cn(
+                    "flex items-start gap-[18px] border-t-2 border-primary/20 py-5",
+                    i === services.length - 1 && "border-b-2",
+                  )}
+                >
+                  <span className="pt-1 font-mono text-xs text-gold">{s.n}</span>
+                  <div>
+                    <h3 className="text-[17px] font-bold text-primary">{s.title}</h3>
+                    <p className="mt-1.5 text-[15px] leading-[1.6] opacity-82">{s.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
 
         {/* ADHERER */}
-        <Section id="adherer" tone="card">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <section id="adherer" className="bg-primary text-primary-foreground">
+          <Container className="grid items-start gap-9 py-14 sm:gap-[72px] sm:py-20 lg:grid-cols-2 lg:py-[110px]">
             <div>
-              <SectionHeading
-                eyebrow="Devenir membre"
-                title="Rejoindre le CONESESS"
-                intro="Remplissez ce formulaire : votre demande est instruite par le Secrétariat Général puis validée par le Bureau Exécutif."
-              />
-              <div className="mt-8 flex items-start gap-3 text-sm text-muted-foreground">
-                <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-secondary" aria-hidden />
-                <p>Adhésion ouverte aux coopératives, mutuelles, GIE, associations économiques et entreprises sociales.</p>
+              <Eyebrow tone="leaf" className="mb-[18px]">
+                07 — Adhésion
+              </Eyebrow>
+              <h2 className="text-[clamp(30px,4vw,52px)] font-extrabold leading-[1.04] tracking-[-0.025em] text-primary-foreground">
+                Rejoignez la confédération.
+              </h2>
+              <p className="mt-[22px] max-w-[42ch] text-[16.5px] leading-[1.7] text-primary-foreground/86">
+                Coopérative, mutuelle, GIE ou entreprise sociale : déposez votre demande d'adhésion.
+                Le Bureau confédéral instruit chaque dossier et vous répond sous quinze jours.
+              </p>
+              <div className="mt-9 flex items-center gap-[18px]">
+                <span className="flex h-[84px] w-[84px] flex-none items-center justify-center rounded-full border-2 border-leaf bg-background">
+                  <img src={logo} alt="" className="block h-[74px] w-[74px] rounded-full" />
+                </span>
+                <div className="label-mono leading-[1.7] text-primary-foreground/72">
+                  CONESESS FONDATEURS
+                  <br />
+                  DAKAR — SÉNÉGAL
+                </div>
               </div>
             </div>
             <MembershipForm />
-          </div>
-        </Section>
+          </Container>
+        </section>
       </main>
       <Footer />
     </div>
