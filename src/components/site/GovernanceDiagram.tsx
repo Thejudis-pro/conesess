@@ -101,26 +101,36 @@ export function GovernanceDiagramMobile() {
   return (
     <div className="flex flex-col items-center font-mono">
       <div className="w-full bg-[#F7F5EE] px-5 py-4 text-left">
-        <div className="text-[11px] tracking-[0.14em] text-[#1E7A3C]">ORGANE SOUVERAIN</div>
+        <div className="text-[11px] font-semibold tracking-[0.14em] text-[#1E7A3C]">
+          ORGANE SOUVERAIN
+        </div>
         <div className="mt-1 font-display text-lg font-bold text-[#1B2A56]">Bureau confédéral</div>
       </div>
-      <span aria-hidden className="h-6 w-0.5 bg-leaf/60" />
-      <div className="flex w-full flex-col gap-2">
+
+      <span aria-hidden className="h-5 w-0.5 bg-leaf/60" />
+      <p className="text-[10.5px] font-semibold tracking-[0.12em] text-primary-foreground/65">
+        TROIS ORGANES TECHNIQUES
+      </p>
+      <span aria-hidden className="h-5 w-0.5 bg-leaf/60" />
+
+      <div className="flex w-full flex-col gap-3">
         {branches.map((b) => (
           <div
             key={b.title}
             style={{ background: b.bg, color: b.fg }}
             className="px-5 py-4 text-left"
           >
-            <div className="text-[11px] tracking-[0.14em] opacity-90">{b.label}</div>
+            <div className="text-[11px] font-semibold tracking-[0.14em] opacity-90">{b.label}</div>
             <div className="mt-1 font-display text-base font-bold">{b.title}</div>
           </div>
         ))}
       </div>
-      <span aria-hidden className="mt-2 h-6 w-0.5 bg-gold/60" />
-      <p className="text-center text-[11px] tracking-[0.14em] text-primary-foreground/80">
-        REMONTÉES DU TERRAIN — 14 RÉGIONS
-      </p>
+
+      <div className="mt-5 w-full border-t-2 border-dashed border-gold/50 pt-4 text-center">
+        <p className="text-[11px] font-semibold tracking-[0.14em] text-primary-foreground/80">
+          FONDÉS SUR LES REMONTÉES DU TERRAIN — 14 RÉGIONS
+        </p>
+      </div>
     </div>
   );
 }
