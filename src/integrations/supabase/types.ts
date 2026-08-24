@@ -92,6 +92,21 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      region_sn:
+        | "Dakar"
+        | "Thiès"
+        | "Diourbel"
+        | "Fatick"
+        | "Kaolack"
+        | "Kaffrine"
+        | "Kédougou"
+        | "Kolda"
+        | "Louga"
+        | "Matam"
+        | "Saint-Louis"
+        | "Sédhiou"
+        | "Tambacounda"
+        | "Ziguinchor"
       secteur_ess:
         | "Agroécologie & Souveraineté Alimentaire"
         | "Mutuelles de Santé, Épargne et Crédit (SFD)"
@@ -234,6 +249,22 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      region_sn: [
+        "Dakar",
+        "Thiès",
+        "Diourbel",
+        "Fatick",
+        "Kaolack",
+        "Kaffrine",
+        "Kédougou",
+        "Kolda",
+        "Louga",
+        "Matam",
+        "Saint-Louis",
+        "Sédhiou",
+        "Tambacounda",
+        "Ziguinchor",
+      ],
       secteur_ess: [
         "Agroécologie & Souveraineté Alimentaire",
         "Mutuelles de Santé, Épargne et Crédit (SFD)",
