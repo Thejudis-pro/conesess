@@ -33,17 +33,37 @@ const fieldClass =
 function AdminPage() {
   const [checking, setChecking] = useState(true);
   const [email, setEmail] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     let active = true;
-    supabase.auth.getSession().then(({ data }) => {
+
+    async function resolve(sessionEmail: string | null, userId: string | null) {
+      if (!userId) {
+        if (!active) return;
+        setEmail(null);
+        setIsAdmin(false);
+        setChecking(false);
+        return;
+      }
+      const { data } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("role", "admin")
+        .maybeSingle();
       if (!active) return;
-      setEmail(data.session?.user.email ?? null);
+      setEmail(sessionEmail);
+      setIsAdmin(Boolean(data));
       setChecking(false);
+    }
+
+    supabase.auth.getSession().then(({ data }) => {
+      void resolve(data.session?.user.email ?? null, data.session?.user.id ?? null);
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      setEmail(session?.user.email ?? null);
-      setChecking(false);
+      setChecking(true);
+      void resolve(session?.user.email ?? null, session?.user.id ?? null);
     });
     return () => {
       active = false;
@@ -80,15 +100,27 @@ function AdminPage() {
       <main className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8">
         {checking ? (
           <p className="font-mono text-sm text-muted-foreground">Chargement de la session…</p>
-        ) : email ? (
+        ) : !email ? (
+          <LoginCard />
+        ) : isAdmin ? (
           <Dashboard />
         ) : (
-          <LoginCard />
+          <div className="mx-auto max-w-md">
+            <Eyebrow>Accès refusé</Eyebrow>
+            <h1 className="mt-3 text-2xl text-primary">Compte non autorisé</h1>
+            <Card className="mt-6">
+              <p className="text-sm text-muted-foreground">
+                Ce compte n'a pas le rôle administrateur. Contactez le Secrétariat Général du CONESESS
+                pour obtenir les droits d'accès au tableau de bord.
+              </p>
+            </Card>
+          </div>
         )}
       </main>
     </div>
   );
 }
+
 
 function LoginCard() {
   const [email, setEmail] = useState("");
