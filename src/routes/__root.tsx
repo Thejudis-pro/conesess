@@ -84,7 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Conseil National des Entreprises de l'Économie Sociale et Solidaire du Sénégal : représentation, incubation et observatoire.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "CONESESS" },
+      { property: "og:locale", content: "fr_SN" },
       { name: "twitter:card", content: "summary_large_image" },
+
     ],
     links: [
       { rel: "stylesheet", href: appCss },
