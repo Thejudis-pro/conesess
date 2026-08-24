@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import logo from "@/assets/conesess-logo.png";
 import { Footer } from "@/components/site/Footer";
-import { GovernanceDiagram } from "@/components/site/GovernanceDiagram";
+import { GovernanceDiagram, GovernanceDiagramMobile } from "@/components/site/GovernanceDiagram";
 import { Header } from "@/components/site/Header";
-import { IanEssDiagram } from "@/components/site/IanEssDiagram";
+import { IanEssDiagram, IanEssDiagramMobile } from "@/components/site/IanEssDiagram";
 import { MembershipForm } from "@/components/site/MembershipForm";
 import { btn, Container, Eyebrow, EyebrowRule } from "@/components/site/primitives";
 import { cn } from "@/lib/utils";
@@ -120,7 +120,6 @@ const embleme = [
     text: "Une économie de production durable, enracinée dans les territoires.",
   },
 ];
-
 
 const constats = [
   {
@@ -417,7 +416,12 @@ function Index() {
               </p>
             </div>
             <div className="border-2 border-leaf/45 bg-ink/18 p-5 sm:p-10">
-              <GovernanceDiagram />
+              <div className="hidden sm:block">
+                <GovernanceDiagram />
+              </div>
+              <div className="sm:hidden">
+                <GovernanceDiagramMobile />
+              </div>
             </div>
             <div className="mt-7 grid gap-0 sm:mt-11 sm:grid-cols-3">
               {gouvernanceCards.map((c, i) => (
@@ -450,7 +454,12 @@ function Index() {
                 portes d'entrée, selon le métier et le territoire.
               </p>
             </div>
-            <IanEssDiagram />
+            <div className="hidden sm:block">
+              <IanEssDiagram />
+            </div>
+            <div className="border-2 border-primary sm:hidden">
+              <IanEssDiagramMobile />
+            </div>
           </Container>
         </section>
 

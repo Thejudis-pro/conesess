@@ -1,4 +1,5 @@
 import logo from "@/assets/conesess-logo.png";
+import { cn } from "@/lib/utils";
 
 const typologies = [
   {
@@ -72,6 +73,25 @@ export function IanEssDiagram() {
           <div className="font-display text-[clamp(12px,1.5vw,17px)] font-bold leading-tight">
             {t.label}
           </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function IanEssDiagramMobile() {
+  return (
+    <div className="flex flex-col">
+      {typologies.map((t, i) => (
+        <div
+          key={t.id}
+          style={{ background: t.bg, color: t.fg }}
+          className={cn("flex items-start gap-4 px-5 py-4", i > 0 && "mt-0.5")}
+        >
+          <span style={{ color: t.tag }} className="label-mono flex-none pt-0.5">
+            {t.id}
+          </span>
+          <span className="font-display text-[15px] font-bold leading-tight">{t.label}</span>
         </div>
       ))}
     </div>

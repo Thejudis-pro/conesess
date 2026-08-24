@@ -61,7 +61,7 @@ export function Header() {
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           onClick={() => setOpen((v) => !v)}
-          className="ml-auto inline-flex h-10 w-10 items-center justify-center border-2 border-primary text-primary lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center border-2 border-primary text-primary lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -75,7 +75,7 @@ export function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="label-mono block px-2 py-2 text-foreground/85 hover:text-secondary"
+                  className="label-mono block px-2 py-3 text-foreground/85 hover:text-secondary"
                 >
                   {item.label}
                 </a>

@@ -90,3 +90,37 @@ export function GovernanceDiagram() {
     </svg>
   );
 }
+
+const branches = [
+  { label: "ANALYSE", title: "Observatoire", bg: "#1E7A3C", fg: "#F7F5EE" },
+  { label: "APPUI", title: "IAN-ESS", bg: "#5FB84C", fg: "#12251A" },
+  { label: "FILIÈRES", title: "Pôles sectoriels", bg: "#EFA83A", fg: "#3A2606" },
+] as const;
+
+export function GovernanceDiagramMobile() {
+  return (
+    <div className="flex flex-col items-center font-mono">
+      <div className="w-full bg-[#F7F5EE] px-5 py-4 text-left">
+        <div className="text-[11px] tracking-[0.14em] text-[#1E7A3C]">ORGANE SOUVERAIN</div>
+        <div className="mt-1 font-display text-lg font-bold text-[#1B2A56]">Bureau confédéral</div>
+      </div>
+      <span aria-hidden className="h-6 w-0.5 bg-leaf/60" />
+      <div className="flex w-full flex-col gap-2">
+        {branches.map((b) => (
+          <div
+            key={b.title}
+            style={{ background: b.bg, color: b.fg }}
+            className="px-5 py-4 text-left"
+          >
+            <div className="text-[11px] tracking-[0.14em] opacity-90">{b.label}</div>
+            <div className="mt-1 font-display text-base font-bold">{b.title}</div>
+          </div>
+        ))}
+      </div>
+      <span aria-hidden className="mt-2 h-6 w-0.5 bg-gold/60" />
+      <p className="text-center text-[11px] tracking-[0.14em] text-primary-foreground/80">
+        REMONTÉES DU TERRAIN — 14 RÉGIONS
+      </p>
+    </div>
+  );
+}
