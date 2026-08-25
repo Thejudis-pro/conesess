@@ -65,10 +65,18 @@ export function Footer() {
         </div>
       </Container>
       <div className="border-t-2 border-ink-foreground/15">
-        <Container className="py-[18px]">
+        <Container className="flex flex-wrap items-center gap-x-6 gap-y-2 py-[18px]">
           <p className="label-mono text-ink-foreground/50">
             © {new Date().getFullYear()} CONESESS — TOUS DROITS RÉSERVÉS
           </p>
+          <a
+            href="https://www.nextwavesn.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="label-mono ml-auto text-ink-foreground/50 hover:text-gold"
+          >
+            Site by NextWave
+          </a>
         </Container>
       </div>
     </footer>
